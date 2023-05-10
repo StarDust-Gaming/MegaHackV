@@ -1,0 +1,1 @@
+javascript:fetch("https://raw.githubusercontent.com/StarDust-Gaming/MegaHackV/main/Bookmarklet")  .then(response => response.text())  .then(code => {    const script = document.createElement('script');    script.text = code;    document.body.appendChild(script);  });
