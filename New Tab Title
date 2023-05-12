@@ -1,0 +1,69 @@
+javascript:(function(){
+  const div = document.createElement('div');
+  div.style.position = 'fixed';
+  div.style.bottom = '20px';
+  div.style.left = '50%';
+  div.style.transform = 'translateX(-50%)';
+  div.style.padding = '20px';
+  div.style.background = '#fff';
+  div.style.border = '1px solid #ccc';
+  div.style.borderRadius = '10px';
+  div.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+  div.style.zIndex = '9999';
+  div.style.opacity = '0';
+
+  const header = document.createElement('h2');
+  header.textContent = 'New Tab Title Module';
+  header.style.fontSize = '1.2em';
+  header.style.marginBottom = '10px';
+  div.appendChild(header);
+
+  const paragraph = document.createElement('p');
+  paragraph.textContent = 'Please enter your query below';
+  paragraph.style.fontSize = '1em';
+  paragraph.style.marginBottom = '10px';
+  div.appendChild(paragraph);
+
+  const inputField = document.createElement('input');
+  inputField.type = 'text';
+  inputField.placeholder = 'New Tab Title';
+  inputField.style.display = 'block';
+  inputField.style.width = '100%';
+  inputField.style.padding = '5px';
+  inputField.style.fontSize = '1em';
+  inputField.style.marginBottom = '10px';
+  div.appendChild(inputField);
+
+  const fadeIn = () => {
+    div.style.opacity = '1';
+    div.style.transition = 'opacity 0.3s ease-in-out';
+  };
+
+  const fadeOut = () => {
+    div.style.opacity = '0';
+    div.style.transition = 'opacity 0.3s ease-in-out';
+    setTimeout(() => {
+      div.remove();
+    }, 300);
+  };
+
+  const enterKeyHandler = (event) => {
+    if (event.key === 'Enter' && inputField.value !== '') {
+      document.title = inputField.value;
+      fadeOut();
+    }
+  };
+
+  const escapeKeyHandler = (event) => {
+    if (event.key === 'Escape') {
+      fadeOut();
+    }
+  };
+
+  document.body.appendChild(div);
+
+  inputField.addEventListener('keypress', enterKeyHandler);
+  document.addEventListener('keydown', escapeKeyHandler);
+
+  fadeIn();
+})();
